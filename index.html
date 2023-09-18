@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage, Grade & Punishment Lines Calculator</title>
+</head>
+<body>
+    <script>
+        // Task 1: Part a
+        const userInput = prompt("Enter a number:");
+        const quantityTag = document.createElement("p");
+        quantityTag.textContent = `Quantity: ${userInput}`;
+        document.body.appendChild(quantityTag);
+
+        // Task 1: Part b
+        const percentageInput = prompt("Enter a percentage amount:");
+        const percentage = parseFloat(percentageInput);
+
+        if (!isNaN(percentage)) {
+            const result = (percentage / 100) * parseFloat(userInput);
+            const resultTag = document.createElement("p");
+            resultTag.textContent = `${percentage}% of Quantity, ${userInput}, is ${result}`;
+            document.body.appendChild(resultTag);
+        } else {
+            alert("Invalid input for percentage amount. Please enter a valid number.");
+        }
+
+        // Task 2: Grade Converter
+        const gradeInput = prompt("Enter a grade between 1 and 100:");
+        const grade = parseInt(gradeInput);
+
+        if (!isNaN(grade) && grade >= 1 && grade <= 100) {
+            // Using if statement (a)
+            let gradeTextA;
+            if (grade >= 91 && grade <= 100) {
+                gradeTextA = "A";
+            } else if (grade >= 81 && grade <= 90) {
+                gradeTextA = "B";
+            } else if (grade >= 71 && grade <= 80) {
+                gradeTextA = "C";
+            } else if (grade >= 61 && grade <= 70) {
+                gradeTextA = "D";
+            } else {
+                gradeTextA = "F";
+            }
+
+            const gradeTagA = document.createElement("p");
+            gradeTagA.textContent = `(a) Grade: ${gradeTextA}`;
+            document.body.appendChild(gradeTagA);
+
+            // Using switch statement (b)
+            let gradeTextB;
+            switch (true) {
+                case grade >= 91 && grade <= 100:
+                    gradeTextB = "A";
+                    break;
+                case grade >= 81 && grade <= 90:
+                    gradeTextB = "B";
+                    break;
+                case grade >= 71 && grade <= 80:
+                    gradeTextB = "C";
+                    break;
+                case grade >= 61 && grade <= 70:
+                    gradeTextB = "D";
+                    break;
+                default:
+                    gradeTextB = "F";
+            }
+
+            const gradeTagB = document.createElement("p");
+            gradeTagB.textContent = `(b) Grade: ${gradeTextB}`;
+            document.body.appendChild(gradeTagB);
+        } else {
+            alert("Invalid input for grade. Please enter a valid number between 1 and 100.");
+        }
+
+        // Task 3-5: Harry Potter Punishment Lines (Updated to use an arrow function)
+        const generatePunishmentLines = () => {
+            const professorName = prompt("Enter the punishing professor's name (e.g., Umbridge):");
+            const lineToWrite = prompt("Enter the line to write (e.g., 'I must not tell lies'):");
+            const numberOfLines = parseInt(prompt("Enter the number of times to write the lines:"));
+
+            if (!isNaN(numberOfLines)) {
+                const linesContainer = document.createElement("div");
+                document.body.appendChild(linesContainer);
+
+                // Display professor's name
+                const professorNameTag = document.createElement("p");
+                professorNameTag.textContent = `Professor ${professorName}:`;
+                linesContainer.appendChild(professorNameTag);
+
+                let i = 1;
+                while (i <= numberOfLines) {
+                    const lineTag = document.createElement("p");
+                    lineTag.textContent = `${i}: ${lineToWrite}`;
+                    linesContainer.appendChild(lineTag);
+                    i++;
+                }
+            } else {
+                alert("Invalid input for the number of lines. Please enter a valid number.");
+            }
+        };
+
+        // Call the arrow function to generate punishment lines
+        generatePunishmentLines();
+
+        // Task 6: Times Tables - Strategy 1 (Nested Loop)
+        const timesTableContainer1 = document.createElement("div");
+        document.body.appendChild(timesTableContainer1);
+
+        for (let factor1 = 1; factor1 <= 12; factor1++) {
+            const timesTableHeader = document.createElement("h3");
+            timesTableHeader.textContent = `Times Table for ${factor1}`;
+            timesTableContainer1.appendChild(timesTableHeader);
+
+            const timesTableList = document.createElement("ul");
+            timesTableContainer1.appendChild(timesTableList);
+
+            for (let factor2 = 1; factor2 <= 12; factor2++) {
+                const result = factor1 * factor2;
+                const listItem = document.createElement("li");
+                listItem.textContent = `${factor1} x ${factor2} = ${result}`;
+                timesTableList.appendChild(listItem);
+            }
+        }
+        // Second Strategy (Calling a Function within a Loop)
+        const timesTableContainer2 = document.getElementById("timesTableContainer2");
+
+        for (let factor1 = 1; factor1 <= 12; factor1++) {
+            createTables(factor1);
+        }
+
+        // Third Strategy (Function Calling Another Function with Delimiter)
+        const timesTableContainer3 = document.getElementById("timesTableContainer3");
+        const allTables = (delimiter) => {
+            for (let factor = 1; factor <= 12; factor++) {
+                createTables(factor, delimiter);
+            }
+        };
+
+        // Call the function to display times tables up to a specified delimiter (e.g., 10)
+        allTables(10);
+
+        // last code
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
